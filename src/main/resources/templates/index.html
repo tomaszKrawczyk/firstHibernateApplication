@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center>
+
+
+
+    <h1 th:text="${error}"></h1>
+
+    <br/>
+
+  <div style="width:100%; height:100%">
+    <form th:action="@{/}" th:object="${reservationForm}" method="post">
+
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        <input placeholder="Imię" type="text" th:filed="*{name}" th:name="name">
+        <br/>
+        <p th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></p>
+        <input placeholder="Nazwisko" type="text" th:filed="*{lastname}" th:name="lastname">
+        <br/>
+        <p th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></p>
+        <input placeholder="Data" type="text" th:filed="*{date}" th:name="date">
+        <br/>
+        <p th:if="${#fields.hasErrors('adress')}" th:errors="*{adress}"></p>
+        <input placeholder="Adres" type="text" th:filed="*{adress}" th:name="adress">
+        <br/>
+        <input type="submit" value="Zarezerwuj">
+    </form>
+  </div>
+
+    <table>
+
+        <tr>
+            <th>Imie:</th>
+            <th>Nazwisko:</th>
+            <th>Adres:</th>
+            <th>Data:</th>
+        </tr>
+
+        <th:block th:each="reservation : ${reservations}">
+            <th th:text="${reservation.name}"></th>
+            <th th:text="${reservation.lastname}"></th>
+            <th th:text="${reservation.adress}"></th>
+            <th th:text="${reservation.date}"></th>
+        </th:block>
+
+    </table>
+</center>
+
+
+   <style>
+       table, th, tr {
+        border: 1px solid black;
+        border-collapse: collapse;
+        font-size: larger;
+       }
+   </style>
+</body>
+</html>
