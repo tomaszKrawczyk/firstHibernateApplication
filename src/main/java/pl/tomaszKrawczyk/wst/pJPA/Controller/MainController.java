@@ -49,7 +49,7 @@ public class MainController {
 
         }
         reservationRepository.save(new ReservationModel(form));
-        return "index";
+        return "redirect:/index";
     }
 
 
